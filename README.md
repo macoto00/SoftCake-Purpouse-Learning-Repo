@@ -6,12 +6,12 @@ Learning Stuff for SoftCake Development
 - PostgreSQL
 
 ## To Learn
-Kubernetes
-Kotlin
-React
-React Native
-Kafka / Rabbit (RabbitMQ)
-Figma
-Swagger
-MongoBD
-SEO (+ google seo, seznam, atd.)
+- Kubernetes
+- Kotlin
+- React
+- React Native
+- Kafka / Rabbit (RabbitMQ)
+- Figma
+- Swagger
+- MongoBD
+- SEO (+ google seo, seznam, atd.)
