@@ -1,11 +1,15 @@
-# SoftCake Purpouse Learning Repo
-Learning Stuff for SoftCake Development
+# Stuff Learning Repo
+
+Learning Stuff for Development
+
+## Projects created for
 
 - Docker
 - RabbitMQ
 - PostgreSQL
 
 ## To Learn
+
 - Kubernetes
 - Kotlin
 - React
