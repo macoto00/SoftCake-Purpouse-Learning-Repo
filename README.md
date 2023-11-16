@@ -15,7 +15,7 @@ Learning Stuff for Development
 - React
 - React Native
 - Kafka / Rabbit (RabbitMQ)
-- Figma
+- Figma (or free openSource alternative)
 - Swagger
 - MongoBD
 - SEO (+ google seo, seznam, atd.)
