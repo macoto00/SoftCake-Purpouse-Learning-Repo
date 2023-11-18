@@ -14,6 +14,7 @@ Learning Stuff for Development
 - Kotlin
 - React
 - React Native
+- React Redux
 - Kafka / Rabbit (RabbitMQ)
 - Figma (or free openSource alternative - Penpot, Plasmic)
 - Swagger
