@@ -7,6 +7,7 @@ Learning Stuff for Development
 - Docker
 - RabbitMQ
 - PostgreSQL
+- Liquibase
 
 ## To Learn
 
