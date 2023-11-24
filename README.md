@@ -8,6 +8,7 @@ Learning Stuff for Development
 - RabbitMQ
 - PostgreSQL
 - Liquibase
+- OpenAPI
 
 ## To Learn
 
