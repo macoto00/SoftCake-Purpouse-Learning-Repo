@@ -7,6 +7,7 @@ import lombok.Data;
 @Entity
 @Table(name = "posts")
 public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,4 +18,5 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
 }

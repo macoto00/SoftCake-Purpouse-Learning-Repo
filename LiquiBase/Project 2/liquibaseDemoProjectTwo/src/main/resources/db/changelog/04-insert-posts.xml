@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="04-insert-books" author="admin">
+    <changeSet id="04-insert-books" author="Tomáš Macoun">
         <insert tableName="posts">
             <column name="id" valueNumeric="1"/>
             <column name="content" value="Post 1 content"/>
