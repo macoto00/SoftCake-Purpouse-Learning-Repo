@@ -11,7 +11,7 @@ Learning Stuff for Development
 
 ## To Learn
 
-- Mapper
+- MapStruct
 - Kubernetes
 - Kotlin
 - React
