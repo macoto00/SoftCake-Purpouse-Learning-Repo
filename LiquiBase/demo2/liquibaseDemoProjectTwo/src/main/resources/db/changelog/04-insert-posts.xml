@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="04-insert-books" author="Tomáš Macoun">
+        <insert tableName="posts">
+            <column name="id" valueNumeric="1"/>
+            <column name="content" value="Post 1 content"/>
+            <column name="user_id" valueNumeric="1"/> <!-- Assigned to user 1 -->
+        </insert>
+        <insert tableName="posts">
+            <column name="id" valueNumeric="2"/>
+            <column name="content" value="Post 2 content"/>
+            <column name="user_id" valueNumeric="2"/> <!-- Assigned to user 2 -->
+        </insert>
+        <insert tableName="posts">
+            <column name="id" valueNumeric="3"/>
+            <column name="content" value="Post 3 content"/>
+            <column name="user_id" valueNumeric="3"/> <!-- Assigned to user 3 -->
+        </insert>
+        <insert tableName="posts">
+            <column name="id" valueNumeric="4"/>
+            <column name="content" value="Post 4 content"/>
+            <column name="user_id" valueNumeric="1"/> <!-- Assigned to user 1 -->
+        </insert>
+        <insert tableName="posts">
+            <column name="id" valueNumeric="5"/>
+            <column name="content" value="Post 5 content"/>
+            <column name="user_id" valueNumeric="2"/> <!-- Assigned to user 2 -->
+        </insert>
+        <insert tableName="posts">
+            <column name="id" valueNumeric="6"/>
+            <column name="content" value="Post 6 content"/>
+            <column name="user_id" valueNumeric="2"/> <!-- Assigned to user 2 -->
+        </insert>
+    </changeSet>
+</databaseChangeLog>

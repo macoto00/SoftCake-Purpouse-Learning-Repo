@@ -1,4 +1,4 @@
-package com.example.liquibasedemoprojecttwo.content;
+package com.example.liquibasedemoprojecttwo.content.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
