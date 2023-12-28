@@ -9,10 +9,11 @@ Learning Stuff for Development
 - PostgreSQL
 - Liquibase
 - OpenAPI
+- MapStruct
+- Cucumber
 
 ## To Learn
 
-- MapStruct
 - Kubernetes
 - Kotlin
 - React
