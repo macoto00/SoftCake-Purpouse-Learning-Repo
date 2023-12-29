@@ -11,13 +11,12 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-@Deprecated
+@Deprecated // Should be replaced with Liquibase in the future
 public class DatabaseFiller implements CommandLineRunner {
 
     /*
     implements CommandLineRunner
     */
-
 
     private final UserRepository userRepository;
 
