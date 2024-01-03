@@ -7,8 +7,8 @@ App has one Entity `User`. We can do basic CRUD operations with the entity like:
 TODO: create a specification of how to proceed every operation
 
 - create
-- read one
-- read all
+- get one
+- get all
 - update
 - delete
 
@@ -50,39 +50,43 @@ Include Cucumber dependencies along with the necessary plugins.
 
 Create .feature files in the src/test/resources directory and corresponding step definition classes in a designated package within the test source directory.
 
-```bash
+```bash       
 |-- java
   |-- com
     |-- example
       |-- cucumberdemo
         |-- CucumberDemoApplicationTests.java
-        |-- controllers
-          |-- AppControllerTest.java
-        |-- features              <-- this line
-          |-- appControllerFeatures.feature
-          |-- userManagementFeatures.feature
         |-- integration
-          |-- IntegrationTests.java
-        |-- services
-          |-- UserServiceTest.java
-        |-- stepdefinitions       <-- this line
-          |-- AppControllerStepDefinitions.java
-          |-- UserStepDefinitions.java
+          |-- AppControllerIntegrationTest.java
+        |-- cucumber
+          |-- features                  <-- this line --
+            |-- appControllerFeature.feature
+            |-- userManagementFeature.feature
+          |-- stepdefinitions           <-- this line --
+            |-- AppControllerStepDefinitions.java
+            |-- UserManagementStepDefinitions.java
+        |-- unit
+          |-- controllers
+            |-- AppControllerTest.java
+          |-- services
+            |-- UserServiceTest.java
 ```
 
 Describe test scenarios using Gherkin syntax.
 
+- Step definitions (`Scenario`, `Given`, `When`, `Then` should have unique descriptions within step definition files and across step definitions files
+- The best practice to differentiate step definitions is to make the descriptions as specific as possible to reflect the behavior or action being tested in the scenario.
+
 ```gherkin
-# Example feature file: user.feature
+# Example feature file: appControllerFeature.feature
 
-Feature: User Management
+Feature: App Controller Functionality
 
-    Scenario: Create a new user
-        Given I have a user with details
-            | firstName | lastName | email               |
-            | John      | Doe      | john@example.com    |
-        When I create the user
-        Then the user should be created successfully
+  # Create user
+  Scenario: Create user with valid data
+    Given a user creation request with valid data
+    When the create user endpoint is called
+    Then the user creation should be successful
 
 # Other scenarios for update, delete, get user, etc.
 ```
@@ -92,26 +96,42 @@ Feature: User Management
 Create step definition classes to map the steps in your feature files to Java code. For instance:
 
 ```java
-public class UserStepDefinitions {
+public class AppControllerStepDefinitions {
+    
+    // Setup
 
-    @Given("I have a user with details")
-    public void iHaveAUserWithDetails(DataTable dataTable) {
-        // Implement logic to set up user details
+    // Scenario: Create user with valid data
+
+    @Given("a user creation request with valid data")
+    public void aUserCreationRequestWithValidDataAppController() {
+        createUserDTO = CreateUserDTO.builder()
+                .firstName("Mark")
+                .lastName("Doe")
+                .email("mark@example.com")
+                .build();
     }
 
-    @When("I create the user")
-    public void iCreateTheUser() {
-        // Implement logic to interact with your application (e.g., call API endpoints)
+    @When("the create user endpoint is called")
+    public void theCreateUserEndpointIsCalledAppController() {
+        responseEntity = appController.createUser(createUserDTO);
     }
 
-    @Then("the user should be created successfully")
-    public void theUserShouldBeCreatedSuccessfully() {
-        // Implement assertions to verify the user creation
+    @Then("the user creation should be successful")
+    public void theUserShouldBeCreatedSuccessfullyAppController() {
+        assertNotNull(responseEntity);
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        assertEquals("User created successfully", responseEntity.getBody());
     }
 
     // Define other step definitions for your scenarios
 }
 ```
+
+Then you can run the feature to test the behaviour.
+
+### Potential fails
+
+- Cucumber identifies steps based on their description, and having steps with the same description in different feature files causes conflicts.
 
 ## Holding
 

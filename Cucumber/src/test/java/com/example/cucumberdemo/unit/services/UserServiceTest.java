@@ -1,10 +1,11 @@
-package com.example.cucumberdemo.services;
+package com.example.cucumberdemo.unit.services;
 
 import com.example.cucumberdemo.mappers.UserMapper;
 import com.example.cucumberdemo.models.User;
 import com.example.cucumberdemo.models.userDTOs.UpdateUserDTO;
-import com.example.cucumberdemo.models.userDTOs.UserCreateDTO;
+import com.example.cucumberdemo.models.userDTOs.CreateUserDTO;
 import com.example.cucumberdemo.repositories.UserRepository;
+import com.example.cucumberdemo.services.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -40,7 +41,7 @@ public class UserServiceTest {
 
     @Test
     public void should_CreateUser_When_ValidData() {
-        UserCreateDTO userCreateDTO = UserCreateDTO.builder()
+        CreateUserDTO createUserDTO = CreateUserDTO.builder()
                 .firstName("John")
                 .lastName("Doe")
                 .email("john@example.com")
@@ -55,16 +56,16 @@ public class UserServiceTest {
         // Mock the repository's save method to capture the user argument
         when(userRepository.save(userCaptor.capture())).thenReturn(null);
 
-        userService.createUser(userCreateDTO);
+        userService.createUser(createUserDTO);
 
         // Verify if the userRepository's save method is invoked
         verify(userRepository, times(1)).save(any(User.class));
 
         // Retrieve the captured user and assert its fields with the DTO
         User savedUser = userCaptor.getValue();
-        assertEquals(userCreateDTO.getFirstName(), savedUser.getFirstName());
-        assertEquals(userCreateDTO.getLastName(), savedUser.getLastName());
-        assertEquals(userCreateDTO.getEmail(), savedUser.getEmail());
+        assertEquals(createUserDTO.getFirstName(), savedUser.getFirstName());
+        assertEquals(createUserDTO.getLastName(), savedUser.getLastName());
+        assertEquals(createUserDTO.getEmail(), savedUser.getEmail());
     }
 
     @Test

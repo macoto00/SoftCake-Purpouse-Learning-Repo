@@ -2,7 +2,7 @@ package com.example.cucumberdemo.controllers;
 
 import com.example.cucumberdemo.models.User;
 import com.example.cucumberdemo.models.userDTOs.UpdateUserDTO;
-import com.example.cucumberdemo.models.userDTOs.UserCreateDTO;
+import com.example.cucumberdemo.models.userDTOs.CreateUserDTO;
 import com.example.cucumberdemo.services.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,9 +19,9 @@ public class AppController {
     private UserServiceImpl userService;
 
     @PostMapping("/users")
-    public ResponseEntity<?> createUser(@RequestBody UserCreateDTO userCreateDTO) {
+    public ResponseEntity<?> createUser(@RequestBody CreateUserDTO createUserDTO) {
         try {
-            userService.createUser(userCreateDTO);
+            userService.createUser(createUserDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create user");
@@ -61,7 +61,7 @@ public class AppController {
             User user = userService.getOneUser(id);
             return ResponseEntity.status(HttpStatus.OK).body(user);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
 

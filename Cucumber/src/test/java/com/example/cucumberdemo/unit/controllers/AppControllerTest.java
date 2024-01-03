@@ -1,8 +1,9 @@
-package com.example.cucumberdemo.controllers;
+package com.example.cucumberdemo.unit.controllers;
 
+import com.example.cucumberdemo.controllers.AppController;
 import com.example.cucumberdemo.models.User;
 import com.example.cucumberdemo.models.userDTOs.UpdateUserDTO;
-import com.example.cucumberdemo.models.userDTOs.UserCreateDTO;
+import com.example.cucumberdemo.models.userDTOs.CreateUserDTO;
 import com.example.cucumberdemo.services.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,15 +38,15 @@ public class AppControllerTest {
 
     @Test
     public void should_CreateUser_When_ValidData() {
-        UserCreateDTO userCreateDTO = UserCreateDTO.builder()
+        CreateUserDTO createUserDTO = CreateUserDTO.builder()
                 .firstName("John")
                 .lastName("Doe")
                 .email("john@example.com")
                 .build();
 
-        doNothing().when(userService).createUser(userCreateDTO);
+        doNothing().when(userService).createUser(createUserDTO);
 
-        ResponseEntity<?> responseEntity = appController.createUser(userCreateDTO);
+        ResponseEntity<?> responseEntity = appController.createUser(createUserDTO);
 
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals("User created successfully", responseEntity.getBody());

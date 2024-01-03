@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class UserCreateDTO {
+public class CreateUserDTO {
     private String firstName;
     private String lastName;
     private String email;

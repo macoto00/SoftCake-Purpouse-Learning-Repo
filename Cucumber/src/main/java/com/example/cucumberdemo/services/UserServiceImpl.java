@@ -3,7 +3,7 @@ package com.example.cucumberdemo.services;
 import com.example.cucumberdemo.mappers.UserMapper;
 import com.example.cucumberdemo.models.userDTOs.UpdateUserDTO;
 import com.example.cucumberdemo.models.User;
-import com.example.cucumberdemo.models.userDTOs.UserCreateDTO;
+import com.example.cucumberdemo.models.userDTOs.CreateUserDTO;
 import com.example.cucumberdemo.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,15 +18,15 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public void createUser(UserCreateDTO userCreateDTO) {
-        String emailToCheck = userCreateDTO.getEmail();
+    public void createUser(CreateUserDTO createUserDTO) {
+        String emailToCheck = createUserDTO.getEmail();
 
         userRepository.checkIfExistByEmailAndThrow(emailToCheck, null);
 
         User newUser = User.builder()
-                .firstName(userCreateDTO.getFirstName())
-                .lastName(userCreateDTO.getLastName())
-                .email(userCreateDTO.getEmail())
+                .firstName(createUserDTO.getFirstName())
+                .lastName(createUserDTO.getLastName())
+                .email(createUserDTO.getEmail())
                 .build();
 
         userRepository.save(newUser);
