@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: db/changelog/01-create-users-table.xml
-  - include:
-      file: db/changelog/02-create-posts-table.xml
-  - include:
-      file: db/changelog/03-insert-users.xml
-  - include:
-      file: db/changelog/04-insert-posts.xml
