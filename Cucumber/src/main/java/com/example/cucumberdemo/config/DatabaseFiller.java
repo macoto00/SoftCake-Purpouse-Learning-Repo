@@ -1,3 +1,5 @@
+/*
+
 package com.example.cucumberdemo.config;
 
 import com.example.cucumberdemo.models.User;
@@ -13,10 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @Deprecated // Should be replaced with Liquibase in the future
 public class DatabaseFiller implements CommandLineRunner {
-
-    /*
-    implements CommandLineRunner
-    */
 
     private final UserRepository userRepository;
 
@@ -59,3 +57,5 @@ public class DatabaseFiller implements CommandLineRunner {
     }
 
 }
+
+ */

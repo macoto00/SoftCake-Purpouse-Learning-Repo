@@ -1,0 +1,19 @@
+spring:
+
+  # PostgresSQL Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/democonnection?currentSchema=democonnection
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  # DDL mode. Default to "create-drop" (create tables on start, delete at the end)
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+  # Liquibase configurations
+  # Enable Liquibase integration
+  liquibase:
+    enabled: true
+    change-log: db/changelog.yml

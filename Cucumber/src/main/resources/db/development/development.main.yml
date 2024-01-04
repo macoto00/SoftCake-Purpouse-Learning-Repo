@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - includeAll:
+      path: inserts
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+  - includeAll:
+      path: updates
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+  - includeAll:
+      path: deletes
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+

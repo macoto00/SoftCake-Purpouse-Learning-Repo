@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: releases/releases.main.yml
+      relativeToChangelogFile: true
+  - include:
+      file: development/development.main.yml
+      relativeToChangelogFile: true
+      context: development
+

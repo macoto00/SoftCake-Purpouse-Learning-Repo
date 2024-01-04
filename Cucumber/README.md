@@ -1,18 +1,63 @@
 # Demo App
 
-Simple Demo App to showcase useful stuff. 
+TODO: 
+
+1) Insert 3 users into DB by starting the App not working
+
+Simple Demo App to showcase useful stuff.
 
 App has one Entity `User`. We can do basic CRUD operations with the entity like:
 
-TODO: create a specification of how to proceed every operation
+- create (POST request `/api/v1/users`)
 
-- create
-- get one
-- get all
-- update
-- delete
+```JSON
+{
+    "firstName": "Mark",
+    "lastName": "Doe",
+    "email": "mark@example.com"
+}
+```
 
-By starting the App, there will be 3 users created into the DB. 
+- get one (GET request `/api/v1/users/{id}`)
+
+- get all (GET request `/api/v1/users`)
+
+- update (PUT request `/api/v1/users/{id}`)
+
+```JSON
+{
+  "firstName": "Eva",
+  "lastName": "Doe",
+  "email": "eva@example.com"
+}
+```
+
+- delete (DELETE request `/api/v1/users/{id}`)
+
+By starting the App, there will be 3 users created into the DB via Liquibase.
+
+```JSON
+[
+  {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com"
+  },
+  {
+    "id": 2,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "jane@example.com"
+  },
+  {
+    "id": 3,
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "email": "alice@example.com"
+  }
+]
+```
 
 ## PostgresSQL
 
@@ -21,6 +66,37 @@ App is connected to PostgresSQL database.
 ## Mapstruct
 
 App is using mapping of objects.
+
+- You can find the relevant part in `mappers` folder.
+
+## Liquibase
+
+- Liquibase is an open-source tool for database schema version control and management. 
+- It helps developers track, manage, and apply changes to database schemas in a consistent and automated way across different environments. 
+- Essentially, it allows for easier database migrations, ensuring that changes are tracked, reversible, and applied reliably.
+
+### Start
+
+- Include dependencies along with the necessary plugins.
+- Follow the structure for scripts:
+
+```bash
+|-- application.properties
+|-- static
+|-- templates
+|-- db
+  |-- changelog.yml            <-- main file
+  |-- development
+    |-- development.main.yml   <-- main development file
+    |-- inserts
+      |-- 01-users.xml
+  |-- releases
+    |-- releases.main.yml      <-- main release file
+    |-- 2024.0
+      |-- 01-users.xml
+```
+
+You can find more in corresponding files.
 
 ## Testing
 
@@ -48,7 +124,7 @@ Include Cucumber dependencies along with the necessary plugins.
 
 ### Step 2 - Create Feature Files and Step Definition
 
-Create .feature files in the src/test/resources directory and corresponding step definition classes in a designated package within the test source directory.
+Create `.feature` files in the `src/test/features` directory and corresponding step definition classes in the `src/test/stepdefinitions` directory within the test source directory.
 
 ```bash       
 |-- java
@@ -74,7 +150,7 @@ Create .feature files in the src/test/resources directory and corresponding step
 
 Describe test scenarios using Gherkin syntax.
 
-- Step definitions (`Scenario`, `Given`, `When`, `Then` should have unique descriptions within step definition files and across step definitions files
+- Step definitions (`Scenario`, `Given`, `When`, `Then` should have unique descriptions within step definition files and across step definitions files.
 - The best practice to differentiate step definitions is to make the descriptions as specific as possible to reflect the behavior or action being tested in the scenario.
 
 ```gherkin
@@ -83,10 +159,10 @@ Describe test scenarios using Gherkin syntax.
 Feature: App Controller Functionality
 
   # Create user
-  Scenario: Create user with valid data
-    Given a user creation request with valid data
+  Scenario: Creating a user with valid data in App Controller
+    Given a valid user creation request is sent to the App Controller
     When the create user endpoint is called
-    Then the user creation should be successful
+    Then the user creation should be successful in App Controller
 
 # Other scenarios for update, delete, get user, etc.
 ```
@@ -102,7 +178,7 @@ public class AppControllerStepDefinitions {
 
     // Scenario: Create user with valid data
 
-    @Given("a user creation request with valid data")
+    @Given("a valid user creation request is sent to the App Controller")
     public void aUserCreationRequestWithValidDataAppController() {
         createUserDTO = CreateUserDTO.builder()
                 .firstName("Mark")
@@ -116,7 +192,7 @@ public class AppControllerStepDefinitions {
         responseEntity = appController.createUser(createUserDTO);
     }
 
-    @Then("the user creation should be successful")
+    @Then("the user creation should be successful in App Controller")
     public void theUserShouldBeCreatedSuccessfullyAppController() {
         assertNotNull(responseEntity);
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
@@ -133,15 +209,21 @@ Then you can run the feature to test the behaviour.
 
 - Cucumber identifies steps based on their description, and having steps with the same description in different feature files causes conflicts.
 
-## Holding
+## Other changes
+
+- Replaced `application.properties` with `application.yml`.
+
+## App is using
 
 - postgresSQL
 - mapper, mapStruct
+- unit tests
+- integration tests
+- cucumber tests
+- liquibase
 
 ## To Add
 
-- cucumber
-- liquibase
 - docker
 - openapi
 - messaging? (RabbitMQ, Kafka?)
